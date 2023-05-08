@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faBars, faImage, faHome } from '@fortawesome/free-solid-svg-icons'
-library.add(faUser, faBars, faImage, faHome)
+import { faUser, faBars, faCar, faHome } from '@fortawesome/free-solid-svg-icons'
+library.add(faUser, faBars, faCar, faHome)
 
 import './navbar.css'
 
@@ -42,7 +42,7 @@ export default function NavBar() {
                     </div>
 
                     <div className="menu-item" onClick={go_app}>
-                        <a><FontAwesomeIcon icon="fa-solid fa-image" className='icon-menu'/> Ver </a>
+                        <a><FontAwesomeIcon icon="fa-solid fa-car" className='icon-menu'/> App </a>
                     </div>
 
                     <div className="menu-item" onClick={() => location.href="/plateguard/login/"}>
