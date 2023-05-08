@@ -121,18 +121,22 @@ export default function Login() {
 
   function seletc_office(event) {
     const value = event.target.value
-    let item;
-    for (item in getOfficeList) {
-      if (item.name != value) {
-        alert(value)
-        setOffice(value)
-      } else {
-        const tip = document.getElementById("SignTip")
-        tip.innerText = "Este nome de posto ja existe"
+    if (getOfficeList.length == 0) {
+      setOffice(value)
+    } else {
+      let item;
+      for (item in getOfficeList) {
+        if (item.name != value) {
+          setOffice(value)
+        } else {
+          const tip = document.getElementById("SignTip")
+          tip.innerText = "Este nome de posto ja existe"
+        }
       }
     }
   }
-  
+
+
   useEffect(() => {
     check_login()
   }, [getToken]);
@@ -161,7 +165,7 @@ export default function Login() {
         </div>
 
         <div className='login-div' id='signupTab' style={{display: 'none'}}>
-          <p className='login-title'> Junte-se a ! </p>
+          <p className='login-title'> Junte-se ao PlateGuard ! </p>
 
           <div className='align-inputs'>
             <InputUser username={setUsername} valid={UserValid} setValid={setUserValid} tip='SignTip'></InputUser>
@@ -172,7 +176,7 @@ export default function Login() {
             <option value="" disabled selected>Selecione seu posto</option>
               {getOfficeList}
             </select>
-            <Input placeholder="Digite um nome para seu posto" valid={true} onChange={seletc_office}></Input><br/>
+            <Input placeholder="Digite um nome para seu posto" valid={true} validate={seletc_office}></Input><br/>
             <a className='login-tip' id='SignTip'> </a>
           </div>
 

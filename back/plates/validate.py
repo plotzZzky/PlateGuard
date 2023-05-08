@@ -12,7 +12,7 @@ def validate_plate(num_value, year_value, city_value, manufac_value, model_value
 
 def validate_number(value):
     number = len(str(value))
-    return False if number is not 7 else True
+    return False if number != 7 else True
 
 
 def validate_year(value):

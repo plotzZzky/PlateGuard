@@ -66,6 +66,7 @@ export default function App() {
     }
 
     function show_modal(type) {
+        setSave(type);
         const modal = document.getElementById("ModalNew");
         let display = window.getComputedStyle(modal).getPropertyValue("display");
         if (display == "none") {
@@ -73,7 +74,6 @@ export default function App() {
         } else {
           modal.style.display = "none";
         }
-        setSave(type);
     }
 
     // create form for new plate or edit plate

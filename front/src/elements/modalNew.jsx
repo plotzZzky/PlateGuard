@@ -99,10 +99,10 @@ export default function ModalNewPlate(props) {
 
     function check_plate_validate() {
         if (validNumber && validCity && validManufac && validModel && validColor && validYear) {
-            if (props.type) {
-                props.create()
-            } else {
+            if (props.save) {
                 props.edit()
+            } else {
+                props.create()
             }
             close_modal()
         } else {
