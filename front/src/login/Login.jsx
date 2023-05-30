@@ -27,15 +27,15 @@ export default function Login() {
   function check_login() {
     if (getToken != undefined) {
       location.href = "/plateguard/app/";
-    } 
+    }
   }
 
   function show_login() {
     let login = document.getElementById('loginTab');
     let signup = document.getElementById('signupTab');
-    login.style.display = getLogin? 'none' : 'block'
-    signup.style.display = getLogin? 'block' : 'none'
-    setLogin(getLogin? false : true)
+    login.style.display = getLogin ? 'none' : 'block'
+    signup.style.display = getLogin ? 'block' : 'none'
+    setLogin(getLogin ? false : true)
   }
 
   function check_if_login_valid() {
@@ -53,8 +53,10 @@ export default function Login() {
     const formData = new FormData();
     formData.append("username", getUsername)
     formData.append("password", getPassword1)
-    let info = {method: 'POST',
-                body: formData}
+    let info = {
+      method: 'POST',
+      body: formData
+    }
 
     fetch(url, info)
       .then((res) => res.json())
@@ -66,7 +68,7 @@ export default function Login() {
           sessionStorage.setItem("token", data["token"])
           setToken(sessionStorage.getItem("token"))
         }
-    })
+      })
   }
 
   function check_if_sign_valid() {
@@ -79,17 +81,17 @@ export default function Login() {
   }
 
   function SignUpFunc() {
-      let url = `http://127.0.0.1:8000/users/register/`
+    let url = `http://127.0.0.1:8000/users/register/`
 
-      const formData = new FormData();
-      formData.append("username", getUsername);
-      formData.append("email", getEmail)
-      formData.append("password1", getPassword1)
-      formData.append("password2", getPassword2)
-      formData.append("office", getOffice)
-      let info = {method: 'POST', body: formData}
+    const formData = new FormData();
+    formData.append("username", getUsername);
+    formData.append("email", getEmail)
+    formData.append("password1", getPassword1)
+    formData.append("password2", getPassword2)
+    formData.append("office", getOffice)
+    let info = { method: 'POST', body: formData }
 
-      fetch(url, info)
+    fetch(url, info)
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
@@ -105,12 +107,12 @@ export default function Login() {
   // offices
   function get_offices() {
     let url = "http://127.0.0.1:8000/users/offices/"
-    let data = {method: 'GET'}
+    let data = { method: 'GET' }
     fetch(url, data)
-    .then((res) => res.json())
-    .then((data) =>{ 
+      .then((res) => res.json())
+      .then((data) => {
         create_offices(data['offices'])
-    })
+      })
   }
 
   function create_offices(value) {
@@ -150,13 +152,13 @@ export default function Login() {
     <>
       <NavBar></NavBar>
 
-      <div className="page" style={{paddingTop: '6em'}}>
+      <div className="page" style={{ paddingTop: '6em' }}>
         <div className='login-div' id='loginTab'>
           <p className='login-title'> Bem vindo de volta!</p>
 
           <div className='align-inputs'>
             <InputUser username={setUsername} valid={UserValid} setValid={setUserValid} tip='LoginTip'></InputUser>
-            <InputPwd password={setPassword1} valid={Pwd1Valid} setValid={setPwd1Valid} placeholder="Digite a senha" tip='LoginTip'></InputPwd><br/>
+            <InputPwd password={setPassword1} valid={Pwd1Valid} setValid={setPwd1Valid} placeholder="Digite a senha" tip='LoginTip'></InputPwd><br />
             <a className='login-tip' id='LoginTip'> </a>
           </div>
           <button className='btn' onClick={check_if_login_valid}> Entrar </button>
@@ -164,7 +166,7 @@ export default function Login() {
           <p className='login-text-link' onClick={show_login}> Cadastre-se</p>
         </div>
 
-        <div className='login-div' id='signupTab' style={{display: 'none'}}>
+        <div className='login-div' id='signupTab' style={{ display: 'none' }}>
           <p className='login-title'> Junte-se ao PlateGuard ! </p>
 
           <div className='align-inputs'>
@@ -173,10 +175,10 @@ export default function Login() {
             <InputPwd password={setPassword1} valid={Pwd1Valid} setValid={setPwd1Valid} placeholder="Digite a senha" tip='SignTip'></InputPwd>
             <InputPwd password={setPassword2} valid={Pwd2Valid} setValid={setPwd2Valid} placeholder="Comfirme a senha" tip='SignTip'></InputPwd>
             <select onChange={seletc_office}>
-            <option value="" disabled selected>Selecione seu posto</option>
+              <option value="" disabled selected>Selecione seu posto</option>
               {getOfficeList}
             </select>
-            <Input placeholder="Digite um nome para seu posto" valid={true} validate={seletc_office}></Input><br/>
+            <Input placeholder="Digite um nome para seu posto" valid={true} validate={seletc_office}></Input><br />
             <a className='login-tip' id='SignTip'> </a>
           </div>
 

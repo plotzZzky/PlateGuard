@@ -6,7 +6,7 @@ import '../app.css'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <Login></Login>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <Login></Login>
+  </React.StrictMode>,
 )
